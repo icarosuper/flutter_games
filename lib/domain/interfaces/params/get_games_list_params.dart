@@ -23,15 +23,22 @@ class GetGamesListParams {
     this.ordering,
   });
 
-  Map<String, dynamic> toMap() => {
-        'page_size': pageSize,
-        'search': search,
-        'platforms': platforms,
-        'developers': developers,
-        'publishers': publishers,
-        'genres': genres,
-        'tags': tags,
-        'metacritic': metacritic,
-        'ordering': ordering,
-      };
+  String toString() {
+    final params = {
+      'page': page,
+      'page_size': pageSize,
+      'search': search,
+      'platforms': platforms,
+      'developers': developers,
+      'publishers': publishers,
+      'genres': genres,
+      'tags': tags,
+      'metacritic': metacritic,
+      'ordering': ordering,
+    };
+
+    params.removeWhere((key, value) => value == null);
+
+    return params.entries.join("&");
+  }
 }
