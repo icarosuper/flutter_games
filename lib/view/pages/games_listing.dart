@@ -35,28 +35,30 @@ class _GamesList extends State<GamesListing> {
   @override
   build(BuildContext context) {
     return SafeArea(
+        minimum:
+            const EdgeInsets.only(left: 10, right: 10, bottom: 20, top: 10),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-          Expanded(
-            child: ListView.separated(
-              padding: const EdgeInsets.all(8),
-              itemCount: _games.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GameCard(game: _games[index]);
-              },
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(height: 8),
-            ),
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            ElevatedButton(
-                onPressed: () => _getNewPage(_currentPage - 1),
-                child: const Text('Voltar')),
-            ElevatedButton(
-                onPressed: () => _getNewPage(_currentPage + 1),
-                child: const Text('Avançar')),
-          ]),
-        ]));
+              Expanded(
+                child: ListView.separated(
+                  padding: const EdgeInsets.all(8),
+                  itemCount: _games.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GameCard(_games[index]);
+                  },
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const Divider(height: 8),
+                ),
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                ElevatedButton(
+                    onPressed: () => _getNewPage(_currentPage - 1),
+                    child: const Text('Voltar')),
+                ElevatedButton(
+                    onPressed: () => _getNewPage(_currentPage + 1),
+                    child: const Text('Avançar')),
+              ]),
+            ]));
   }
 }

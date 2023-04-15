@@ -5,7 +5,7 @@ class Game {
   final String? name;
   final DateTime? released;
   final bool? toBeAnnounced;
-  final Uri? backgroundImage;
+  final String? backgroundImage;
   final int? ratingTop;
   final int? ratingsCount;
   final int? reviewsTextCount;
@@ -57,7 +57,7 @@ class Game {
       name: json['name'],
       released: DateTime.tryParse(json['released']),
       toBeAnnounced: json['tba'],
-      backgroundImage: Uri.tryParse(json['background_image']),
+      backgroundImage: json['background_image'],
       ratingsCount: json['ratings_count'],
       metacritic: json['metacritic'],
       updated: DateTime.tryParse(json['updated']),
