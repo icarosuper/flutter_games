@@ -1,3 +1,12 @@
+import 'package:flutter_games/domain/entities/added_by_status.dart';
+import 'package:flutter_games/domain/entities/esrb_rating.dart';
+import 'package:flutter_games/domain/entities/game_platform.dart';
+import 'package:flutter_games/domain/entities/genre.dart';
+import 'package:flutter_games/domain/entities/parent_platform.dart';
+import 'package:flutter_games/domain/entities/rating.dart';
+import 'package:flutter_games/domain/entities/short_screenshot.dart';
+import 'package:flutter_games/domain/entities/tag.dart';
+
 class Game {
   final double rating;
   final int? id;
@@ -17,16 +26,14 @@ class Game {
   final int? reviewsCount;
   final String? saturatedColor;
   final String? dominantColor;
-  // final Iterable<Rating>? ratings;
-  // final AddedByStatus? addedByStatus;
-  // ratings
-  // platforms
-  // parentPlatforms
-  // genres
-  // stores
-  // tags
-  // esrbRating
-  // shortScreenshots
+  final Iterable<Rating>? ratings;
+  final AddedByStatus? addedByStatus;
+  final List<GamePlatform>? platforms;
+  final List<ParentPlatform>? parentPlatforms;
+  final List<Genre>? genres;
+  final List<Tag>? tags;
+  final EsrbRating? esrbRating;
+  final List<ShortScreenshot>? shortScreenshots;
 
   Game({
     required this.rating,
@@ -47,6 +54,14 @@ class Game {
     this.reviewsTextCount,
     this.saturatedColor,
     this.suggestionsCount,
+    this.ratings,
+    this.addedByStatus,
+    this.platforms,
+    this.parentPlatforms,
+    this.genres,
+    this.tags,
+    this.esrbRating,
+    this.shortScreenshots,
   });
 
   factory Game.fromJson(Map<String, dynamic> json) {
@@ -69,6 +84,19 @@ class Game {
       suggestionsCount: json['suggestions_count'],
       dominantColor: json['dominant_color'],
       saturatedColor: json['saturated_color'],
+      esrbRating: EsrbRating.fromJson(json['esrb_rating']),
+      addedByStatus: AddedByStatus.fromJson(json['added_by_status']),
+      ratings: List<Rating>.from(
+          json['ratings'].map((rating) => Rating.fromJson(rating))),
+      platforms: List<GamePlatform>.from(
+          json['platforms'].map((platform) => GamePlatform.fromJson(platform))),
+      parentPlatforms: List<ParentPlatform>.from(json['parent_platforms']
+          .map((platform) => ParentPlatform.fromJson(platform))),
+      genres: List<Genre>.from(
+          json['genres'].map((genre) => Genre.fromJson(genre))),
+      tags: List<Tag>.from(json['tags'].map((tag) => Tag.fromJson(tag))),
+      shortScreenshots: List<ShortScreenshot>.from(json['short_screenshots']
+          .map((screenshot) => ShortScreenshot.fromJson(screenshot))),
     );
   }
 }

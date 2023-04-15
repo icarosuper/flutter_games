@@ -23,6 +23,7 @@ class GetGamesListParams {
     this.ordering,
   });
 
+  @override
   String toString() {
     final params = {
       'page': page,
