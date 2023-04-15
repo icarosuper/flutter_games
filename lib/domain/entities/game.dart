@@ -84,8 +84,12 @@ class Game {
       suggestionsCount: json['suggestions_count'],
       dominantColor: json['dominant_color'],
       saturatedColor: json['saturated_color'],
-      esrbRating: EsrbRating.fromJson(json['esrb_rating']),
-      addedByStatus: AddedByStatus.fromJson(json['added_by_status']),
+      esrbRating: json['esrb_rating'] != null
+          ? EsrbRating.fromJson(json['esrb_rating'])
+          : null,
+      addedByStatus: json['added_by_status'] != null
+          ? AddedByStatus.fromJson(json['added_by_status'])
+          : null,
       ratings: List<Rating>.from(
           json['ratings'].map((rating) => Rating.fromJson(rating))),
       platforms: List<GamePlatform>.from(
